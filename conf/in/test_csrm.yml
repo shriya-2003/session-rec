@@ -1,14 +1,11 @@
 ---
-type: single # single|window, maybe add opt
-key: sgnn #added to the csv names
-evaluation: evaluation #evaluation|evaluation_last|evaluation_multiple
+type: single 
+key: sgnn 
+evaluation: evaluation 
 data:
-  name: rsc #added in the end of the csv names
+  name: rsc 
   folder: data/rsc15/prepared/
-  #prefix: yoochoose-clicks-100k
   prefix: yoochoose-clicks-short
-#  slices: 5 #only window
-#  skip: [0,3] #only window
   opts: {sessions_test: 100}
 
 results:

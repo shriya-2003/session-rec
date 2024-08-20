@@ -36,7 +36,6 @@ def load_data(path, file, rows_train=None, rows_test=None, slice_num=None, densi
 
     print('START load data')
     st = time.time()
-    sc = time.clock()
 
     split = ''
     if (slice_num != None and isinstance(slice_num, int)):
@@ -109,7 +108,7 @@ def load_data(path, file, rows_train=None, rows_test=None, slice_num=None, densi
 
     check_data(train, test)
 
-    print('END load data ', (time.clock() - sc), 'c / ', (time.time() - st), 's')
+    print('END load data ', (time.process_time()- sc), 'c / ', (time.time() - st), 's')
 
     return (train, test)
 
@@ -182,7 +181,7 @@ def load_data_session_hdf(path, file, sessions_train=None, sessions_test=None, s
 
     print('START load data')
     st = time.time()
-    sc = time.clock()
+    sc = time.time()
 
     split = ''
     if (slice_num != None and isinstance(slice_num, int)):
@@ -209,7 +208,7 @@ def load_data_session_hdf(path, file, sessions_train=None, sessions_test=None, s
                                        sessions_test)  # (train, test, sessions_train=None, sessions_test=None)
 
     print('!!!!!!!!! File: ' + file + split + '.hdf')
-    print('END load data ', (time.clock() - sc), 'c / ', (time.time() - st), 's')
+    print('END load data ', (time.process_time()- sc), 'c / ', (time.time() - st), 's')
 
     return (train, test)
 
@@ -245,7 +244,7 @@ def load_data_session(path, file, sessions_train=None, sessions_test=None, slice
 
     print('START load data')
     st = time.time()
-    sc = time.clock()
+    sc = time.time()
 
     split = ''
     if (slice_num != None and isinstance(slice_num, int)):
@@ -262,7 +261,7 @@ def load_data_session(path, file, sessions_train=None, sessions_test=None, slice
 
     train, test = prepare_data_session(train, test, sessions_train, sessions_test)
 
-    print('END load data ', (time.clock() - sc), 'c / ', (time.time() - st), 's')
+    print('END load data ', (time.process_time() - sc), 'c / ', (time.time() - st), 's')
 
     return (train, test)
 
@@ -288,12 +287,12 @@ def load_buys(path, file):
 
     print('START load buys')
     st = time.time()
-    sc = time.clock()
+    sc = time.time()
 
     # load csv
     buys = pd.read_csv(path + file + '.txt', sep='\t', dtype={'ItemId': np.int64})
 
-    print('END load buys ', (time.clock() - sc), 'c / ', (time.time() - st), 's')
+    print('END load buys ', (time.process_time() - sc), 'c / ', (time.time() - st), 's')
 
     return buys
 
@@ -335,7 +334,7 @@ def load_data_session_retrain(path, file, trian_set, test_num, sessions_train=No
 
     print('START load data')
     st = time.time()
-    sc = time.clock()
+    sc = time.time()
 
     split = ''
     if (slice_num != None and isinstance(slice_num, int)):
@@ -394,7 +393,7 @@ def load_data_session_retrain(path, file, trian_set, test_num, sessions_train=No
 
         check_data(train, test)
 
-    print('END load data ', (time.clock() - sc), 'c / ', (time.time() - st), 's')
+    print('END load data ', (time.process_time() - sc), 'c / ', (time.time() - st), 's')
 
     return (train, test_list)
 
@@ -430,7 +429,7 @@ def load_data_userbased(path, file, rows_train=None, rows_test=None, slice_num=N
 
     print('START load data')
     st = time.time()
-    sc = time.clock()
+    sc = time.time()
 
     split = ''
     if (slice_num != None and isinstance(slice_num, int)):
@@ -499,7 +498,7 @@ def load_data_userbased(path, file, rows_train=None, rows_test=None, slice_num=N
           format(len(test), test.SessionId.nunique(), test.ItemId.nunique(), data_start.date().isoformat(),
                  data_end.date().isoformat()))
 
-    print('END load data ', (time.clock() - sc), 'c / ', (time.time() - st), 's')
+    print('END load data ', (time.process_time() - sc), 'c / ', (time.time() - st), 's')
 
     return (train, test)
 
@@ -599,7 +598,7 @@ def count_repetitions(path, file, rows_train=None, rows_test=None, slice_num=Non
 
     print('START load data')
     st = time.time()
-    sc = time.clock()
+    sc = time.time()
 
     split = ''
     if (slice_num != None and isinstance(slice_num, int)):
@@ -681,6 +680,7 @@ def count_repetitions(path, file, rows_train=None, rows_test=None, slice_num=Non
     print("Number of sessions: " + str(df_out.shape[0]))
     print("More than 1 repetition: " + str(df_out[df_out['Duplicates'] > 1].count()))
 
-    print('END load data ', (time.clock() - sc), 'c / ', (time.time() - st), 's')
+    print('END load data ', (time.process_time()) - sc, 'c / ', (time.time() - st), 's')
+
 
     return (train, test)
